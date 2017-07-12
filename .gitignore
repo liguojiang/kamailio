@@ -50,3 +50,7 @@ libiname.lst
 *.7
 # vscode tmp files
 .vscode
+
+# by winlin
+bin
+.idea

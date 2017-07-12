@@ -2426,6 +2426,16 @@ try_again:
 		 * to try to resovle ipv6 addresses */
 		default_core_cfg.dns_try_ipv6=0;
 	}
+
+    // by winlin, ignore lo when don't fork.
+    if (dont_fork) {
+        struct socket_info* p = udp_listen;
+        while (p->next && strncmp(p->name.s, "127.0.0.1", p->name.len) == 0) {
+            p = p->next;
+        }
+        udp_listen = p;
+    }
+
 	/* print all the listen addresses */
 	printf("Listening on \n");
 	print_all_socket_lists();
